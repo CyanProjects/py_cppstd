@@ -29,8 +29,8 @@ class TestStd(unittest.TestCase):
         from py_cppstd import std
         std = std()
         std.include('iostream')
-        std.cout << 114514
-        std.cout << '114514'
+        self.assertIs(std.cout << 114514 << '\n', std.cout) # Test integer
+        self.assertIs(std.cout << '114514', std.cout) # Test string
 
 
 if __name__ == '__main__':

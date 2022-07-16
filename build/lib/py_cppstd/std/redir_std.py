@@ -15,10 +15,10 @@ def freopen(Filename: str, mode: str, stream: py_cppstd.cppstd.iostream._iostrea
         tokens = tuple(tokens)
         var = tokens[0].string
         for token in tokens[1:]:
-            sub += token.string
+        sub += token.string
         exec(f'{var}{sub}={new_stream}', call_frame.f_globals, call_frame.f_locals)
         return True
-    except Exception:
+    except:
         return False
 
 __all__ = ['freopen']

@@ -7,7 +7,7 @@ Using C++ std lib iostream in py
 ### Import
     from py_cppstd import std  
 __then__:  
-`std.load()`  
+`std.load()` [why_load.md](Question?)  
 __or__  
 `std = std()`
 

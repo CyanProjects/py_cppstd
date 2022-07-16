@@ -8,4 +8,4 @@ set f_locals[var] to it.
 ### Achieve
 
 *Go to *
-<a href='py_cppstd/__init__.py'> py_cppstd/__init__.py </a>
+<a href='py_cppstd/__init__.py'> py_cppstd/\_\_init\_\_.py </a>

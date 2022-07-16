@@ -1,2 +1,0 @@
-class NoLibraryError(ModuleNotFoundError):
-    pass

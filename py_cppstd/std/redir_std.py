@@ -1,4 +1,4 @@
-import py_cppstd.cppstd.iostream
+import py_cppstd.std.iostream
 
 import inspect
 import objprint.frame_analyzer as frame_a # 再白嫖一下应该还是没事吧(

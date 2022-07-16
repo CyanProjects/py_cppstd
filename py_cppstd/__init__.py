@@ -1,7 +1,7 @@
 import importlib
 
 import py_cppstd.exceptions as exceptions
-import py_cppstd.cppstd.iostream
+import py_cppstd.std.iostream
 
 class std:
     @staticmethod
@@ -37,7 +37,7 @@ class std:
 
     def include(self, file: str):
         try:
-            module = importlib.import_module(f'.cppstd.{file}', package='py_cppstd')
+            module = importlib.import_module(f'.std.{file}', package='py_cppstd')
             module.__man__ = self
             self.libs.append(module)
         except ModuleNotFoundError:

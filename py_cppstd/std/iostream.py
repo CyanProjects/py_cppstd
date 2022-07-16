@@ -1,7 +1,7 @@
 # make iostream nice in Py!(
 # include <iostream>(
 
-import py_cppstd.cppstd.ios as ios
+import py_cppstd.std.ios as ios
 
 from sys import __stdout__, __stdin__, __stderr__
 from ctypes import c_char
@@ -21,9 +21,9 @@ class _iostream:
         self.o_out = ios.o_out
         self.o_in = ios.o_out
 
-    def __lshift__(self, data: type) -> "cppstd._iostream":
+    def __lshift__(self, data: type) -> "std._iostream":
         """
-        using cppstd.cout << val
+        using std.cout << val
         put value in val to stdout
         :param data: got and attr __str__ or magic method __lshift__
         :return: self
@@ -62,9 +62,9 @@ class _iostream:
     def good(self) -> bool:
         return self._std_iostream.closed
 
-    def __rshift__(self, mutable: type) -> "cppstd._iostream":
+    def __rshift__(self, mutable: type) -> "std._iostream":
         """
-        using cppstd.cin >> var
+        using std.cin >> var
         read var in stdout and put value into var
         :param mutable: a mutable object
         :return: self
@@ -118,12 +118,12 @@ class _iostream:
 
 class flush:
     @staticmethod
-    def __lshift__(stream: "cppstd._iostream", other):
+    def __lshift__(stream: "std._iostream", other):
         stream.flush()
 
 class endl:
     @staticmethod
-    def __lshift__(stream: "cppstd._iostream", other):
+    def __lshift__(stream: "std._iostream", other):
         (stream << '\n').flush()
 
 cout = _iostream(_internal_io_obj=__stdout__)

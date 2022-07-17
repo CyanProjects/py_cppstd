@@ -11,8 +11,7 @@ __then__:
 __or__  
 `std = std()`
 
-### Usage
-#### iostream
+### *iostream* Usage
 
 **recommend** to use ***;*** when end line.  
 

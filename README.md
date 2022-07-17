@@ -11,7 +11,9 @@ __then__:
 __or__  
 `std = std()`
 
-### How to use *iostream*
+### Usage
+#### iostream
+
 **recommend** to use ***;*** when end line.  
 
     std.include('iostream') # include 'iostream'  

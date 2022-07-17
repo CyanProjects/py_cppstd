@@ -8,7 +8,7 @@ Using C++ std lib iostream in py
     from py_cppstd import std  
 __then__:  
 `std.load()` 
-[variables are different after uses](why_load.md)  
+[variables are different after uses?](why_load.md)  
 __or__  
 `std = std()`
 

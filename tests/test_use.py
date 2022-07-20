@@ -1,6 +1,6 @@
 import unittest
 import py_cppstd as cppstd
-from py_cppstd import exceptions
+from ..py_cppstd import exceptions
 
 class TestStd(unittest.TestCase):
     def test_wrong_includes(self):

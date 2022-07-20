@@ -21,7 +21,7 @@ class _iostream:
         self.o_out = ios.o_out
         self.o_in = ios.o_out
 
-    def __lshift__(self, data: type) -> "std._iostream":
+    def __lshift__(self, data: type) -> "_iostream":
         """
         using std.cout << val
         put value in val to stdout
@@ -62,7 +62,7 @@ class _iostream:
     def good(self) -> bool:
         return self._std_iostream.closed
 
-    def __rshift__(self, mutable: type) -> "std._iostream":
+    def __rshift__(self, mutable: type) -> "_iostream":
         """
         using std.cin >> var
         read var in stdout and put value into var
@@ -118,12 +118,12 @@ class _iostream:
 
 class flush:
     @staticmethod
-    def __lshift__(stream: "std._iostream", other):
+    def __lshift__(stream: "_iostream", other):
         stream.flush()
 
 class endl:
     @staticmethod
-    def __lshift__(stream: "std._iostream", other):
+    def __lshift__(stream: "_iostream", other):
         (stream << '\n').flush()
 
 cout = _iostream(_internal_io_obj=__stdout__)

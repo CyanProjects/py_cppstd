@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 setup(
     name='py_cppstd',
-    version='0.2',
+    version='0.2.1',
     description=[
         'Using cpp std iostream lib in py'
     ],

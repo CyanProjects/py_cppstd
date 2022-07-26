@@ -1,0 +1,4 @@
+[flake8]
+ignore = F82
+exclude = py_cppstd/objprint
+max-complexity = 10

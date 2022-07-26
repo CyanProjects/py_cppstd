@@ -1,3 +1,11 @@
+#  Copyright (c) 2022. 保留所有权利.
+#  项目 - py_cppstd ==> ==> ==> ==> ==> ==> ==> ==> ==> =>>
+#  @Author  : Cyan Changes(DELL)
+#  @Email   : 1491326171@qq.com | cyq20100313cC@Gmail.com
+#  @Edit    : 2022/7/20 下午1:16
+#  @File    : test_use.py
+#  @CorpTime: 2022/7/26 上午11:16
+
 import unittest
 from py_cppstd import std as cppstd, exceptions
 

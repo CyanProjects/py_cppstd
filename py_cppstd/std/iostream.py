@@ -7,8 +7,8 @@ from sys import __stdout__, __stdin__, __stderr__
 from ctypes import c_char
 import io
 
-import objprint.frame_analyzer as frame_a  # 白嫖一下应该没事吧(
-import objprint
+import py_cppstd.objprint.frame_analyzer as frame_a  # 白嫖一下应该没事吧(
+import py_cppstd.objprint
 
 
 # class not complete now
@@ -53,7 +53,7 @@ class _iostream:
             elif (dir == ios.end):
                 return self._std_iostream.seek(index, __whence=io.SEEK_END)
             else:
-                raise ValueError(f"Invalid Seekdir {objprint.objstr(dir)}!")
+                raise ValueError(f"Invalid Seekdir {objstr(dir)}!")
         else:
             raise IOError("un-seekable iostream!")
 

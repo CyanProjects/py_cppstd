@@ -21,7 +21,7 @@ setup(
     maintainer='Cyan_Changes',
     maintainer_email='1491326171@qq.com',
     license='Apache 2.0',
-    packages=find_packages() + ['objpinrt'],
+    packages=find_packages(),
     platforms=['all'],
     url='https://github.com/Chinese-Cyq20100313/py_cppstd',
     classifiers=[

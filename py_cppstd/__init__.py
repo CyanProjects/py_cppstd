@@ -9,7 +9,7 @@
 import importlib
 
 import py_cppstd.exceptions as exceptions
-import py_cppstd.std.iostream
+
 
 class std:
     @staticmethod

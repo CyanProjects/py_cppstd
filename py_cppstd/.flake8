@@ -1,4 +1,0 @@
-[flake8]
-ignore = F821
-exclude = objprint
-max-complexity = 10

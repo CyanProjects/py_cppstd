@@ -7,7 +7,7 @@
 #  @CorpTime: 2022/7/26 上午11:16
 
 import unittest
-from py_cppstd import std as cppstd, exceptions
+from py_cppstd import std, exceptions
 
 
 class TestStd(unittest.TestCase):

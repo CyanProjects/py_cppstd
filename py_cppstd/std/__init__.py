@@ -16,7 +16,7 @@ class std:
 
     def include(self, file: str):
         try:
-            module = importlib.import_module(f'.std.{file}', package='py_cppstd')
+            module = importlib.import_module(f'..std.{file}', package='py_cppstd')
             module.__man__ = self
             self.libs.append(module)
         except ModuleNotFoundError:

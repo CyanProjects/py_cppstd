@@ -6,3 +6,4 @@
 #  @File    : make_depend.py
 #  @CorpTime: 2022/7/26 上午11:16
 
+shared: dict = {}

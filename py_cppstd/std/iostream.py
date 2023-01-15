@@ -1,14 +1,12 @@
-# make iostream nice in Py!(
-# include <iostream>(
+from . import make_depend
 
-import py_cppstd.std.ios as ios
+ios = make_depend.shared._include('ios')
 
 from sys import __stdout__, __stdin__, __stderr__
 from ctypes import c_char
 import io
 
-import py_cppstd.objprint.frame_analyzer as frame_a  # 白嫖一下应该没事吧(
-import py_cppstd.objprint
+import objprint.frame_analyzer as frame_a
 
 
 # class not complete now
@@ -147,15 +145,14 @@ cout = _iostream(_internal_io_obj=__stdout__)
 cin = _iostream(_internal_io_obj=__stdin__)
 cerr = _iostream(_internal_io_obj=__stderr__)
 
-__man__ = None
+__stdns__ = None
+__lib__ = "iostream"
 
 
 class create_all:
-    all = ['cin', 'cout', 'cerr', 'flush', 'endl']
+    all = ['cin', 'cout', 'cerr', 'flush', 'endl', "__lib__"]
 
     def __getitem__(self, item):
-        if ios not in __man__.libs:
-            __man__.libs.append(ios)
         return self.__class__.all[item]
 
 

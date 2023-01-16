@@ -6,8 +6,8 @@
 #  @File    : __init__.py
 #  @CorpTime: 2022/7/26 上午11:16
 
-from .std import std as _std
+from .std import Std as _Std
 
-std = _std()
+std = _Std()
 
 __all__ = ['std']

@@ -6,4 +6,27 @@
 #  @File    : make_depend.py
 #  @CorpTime: 2022/7/26 上午11:16
 
+from typing import Dict, Union, Any
+from types import ModuleType
+
 shared: dict = {}
+
+
+def updates_depend(depends: Dict[str, Union[str, Union[str, Any]]]) -> None:
+    shared.update(depends)
+
+
+class _Depends:
+    def __init__(self):
+        self.stdns: ModuleType = None
+        self.stdname = "py_cppstd.std"
+        self.include = None
+
+    def __getattr__(self, item):
+        return shared[item]
+
+    def __setattr__(self, key, value):
+        shared[key] = value
+
+
+depends = _Depends()

@@ -7,36 +7,37 @@
 #  @CorpTime: 2022/7/26 上午11:16
 
 import importlib
-
-from .make_depend import shared
+from types import ModuleType
 
 import py_cppstd.exceptions as exceptions
 
-class std:
+from typing import List
+
+class Std:
     def __init__(self):
+        from .make_depend import depends
+        depends.stdname = self.__module__
+        depends.stdns = self
+        depends.include = self.include
         self.libs = []
 
-    def include(self, file: str):
+    def include(self, file: str) -> "ModuleType":
         try:
             for lib in self.libs:
                 if lib.__lib__ == file:
-                    return module
-            make_depend.shared = {
-                '__stdname__': self.__module__,
-                '__stdns__': self,
-                '_include': self.include
-            }
-            module = importlib.__import__(f'{self.__module__}.{file}', globals(), locals())
+                    return lib
+            module = importlib.import_module(f'{self.__module__}.{file}')
             self.libs.append(module)
             return module
         except ModuleNotFoundError:
             raise exceptions.NoSuchLibraryError(f'Library {file} is not exist!')
 
-    def __getattr__(self, item):
+    def __getattr__(self, item) -> "ModuleType":
         for lib in self.libs:
-            if item in lib.__all__:
+            if item in dir(lib):
                 return eval(f'lib.{item}')
 
         raise NameError(f'No attr named {item}!')
 
-__all__ = ['std']
+
+__all__ = ['Std']

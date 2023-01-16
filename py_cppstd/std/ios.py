@@ -6,10 +6,10 @@
 #  @File    : ios.py
 #  @CorpTime: 2022/7/26 上午11:16
 
-
-_ios_base = _include('ios')
+from .ios_base import *
 
 __lib__ = "ios"
+
 
 def sync_with_print_input(sync: bool):
     raise NotImplementedError()

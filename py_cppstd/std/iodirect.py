@@ -13,7 +13,7 @@ import py_cppstd.std.iostream
 
 
 def reopen(filename: str, mode: str,
-           stream: py_cppstd.cppstd.iostream._IOStream) -> bool:
+           stream: "_IOStream") -> bool:
     try:
         import io
         import tokenize

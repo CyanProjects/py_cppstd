@@ -156,7 +156,7 @@ __lib__ = "iostream"
 
 
 class CreateAll:
-    all = ['cin', 'cout', 'cerr', 'flush', 'endl', "__lib__"]
+    all = ['cin', 'cout', 'cerr', 'flush', 'endl', "__lib__", "_IOStream"]
 
     def __getitem__(self, item):
         return self.__class__.all[item]

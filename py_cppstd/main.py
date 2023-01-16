@@ -9,7 +9,6 @@
 from py_cppstd import std
 
 if __name__ == '__main__':
-    std = std()
     std.include('iostream')
     std.cout << "enter sth. here\n"
     sth: str = ''

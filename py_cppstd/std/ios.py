@@ -8,6 +8,8 @@
 
 from .ios_base import *
 
+__lib__ = "ios"
+
 
 def sync_with_print_input(sync: bool):
     raise NotImplementedError()

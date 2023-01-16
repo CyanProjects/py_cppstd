@@ -10,10 +10,8 @@ from setuptools import find_packages, setup
 
 setup(
     name='py_cppstd',
-    version='0.2.2',
-    description=[
-        'Using cpp std iostream lib in py'
-    ],
+    version='0.3.3',
+    description='Use C++ std::iostream style output',
     long_description=open('README.md').read(),
     long_description_content_type="text/markdown",
     author='Cyan_Changes',
@@ -23,13 +21,13 @@ setup(
     license='Apache 2.0',
     packages=find_packages(),
     platforms=['all'],
+    requires=['executing', "objprint"],
     url='https://github.com/Chinese-Cyq20100313/py_cppstd',
     classifiers=[
         "Development Status :: 4 - Beta",
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: Apache Software License",
         "Operating System :: OS Independent",
-        "Programming Language :: Python :: Implementation :: CPython",
-        "Topic :: Printing"
+        "Programming Language :: Python :: Implementation :: CPython"
     ]
 )

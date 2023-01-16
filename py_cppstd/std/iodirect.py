@@ -3,7 +3,7 @@
 #  @Author  : Cyan Changes(DELL)
 #  @Email   : 1491326171@qq.com | cyq20100313cC@Gmail.com
 #  @Edit    : 2022/7/16 下午9:12
-#  @File    : redir_std.py
+#  @File    : iodirect.py
 #  @CorpTime: 2022/7/26 上午11:16
 
 import inspect
@@ -12,12 +12,12 @@ import objprint.frame_analyzer as frame_a  # 再白嫖一下应该还是没事�
 import py_cppstd.std.iostream
 
 
-def freopen(Filename: str, mode: str,
-            stream: py_cppstd.cppstd.iostream._iostream) -> bool:
+def reopen(filename: str, mode: str,
+           stream: "_IOStream") -> bool:
     try:
         import io
         import tokenize
-        new_stream = open(Filename, mode, encoding=stream.encoding)
+        new_stream = open(filename, mode, encoding=stream.encoding)
         call_frame = inspect.currentframe().f_back
         args = frame_a.FrameAnalyzer().get_args(call_frame)
         arg_stream_io = io.StringIO(args[2])
@@ -34,4 +34,6 @@ def freopen(Filename: str, mode: str,
         return False
 
 
-__all__ = ['freopen']
+__all__ = ['reopen']
+
+__lib__ = "iodirect"

@@ -1,19 +1,20 @@
-# make iostream nice in Py!(
-# include <iostream>(
-
-import py_cppstd.std.ios as ios
+from .make_depend import depends
 
 from sys import __stdout__, __stdin__, __stderr__
 from ctypes import c_char
 import io
+from typing import Self
 
-import py_cppstd.objprint.frame_analyzer as frame_a  # 白嫖一下应该没事吧(
-import py_cppstd.objprint
+import objprint.frame_analyzer as frame_a
+from objprint import objstr
+
+ios = depends.include('ios')
+depends.include('iodirect')
 
 
 # class not complete now
 # only simple (cout, cin) can use
-class _iostream:
+class _IOStream:
     __split__ = (' ', '\n')  # pass chars
 
     # init io.TextIOWrapper
@@ -23,9 +24,9 @@ class _iostream:
         self.o_out = ios.o_out
         self.o_in = ios.o_out
 
-    def __lshift__(self, data: type) -> "_iostream":
+    def __lshift__(self, data: type) -> Self:
         """
-        using std.cout << val
+        using cout << val
         put value in val to stdout
         :param data: got and attr __str__ or magic method __lshift__
         :return: self
@@ -33,7 +34,7 @@ class _iostream:
         if self._std_iostream.writable():
             try:
                 self._std_iostream.write(data.__str__())
-            except Exception:
+            except (AttributeError, IOError, ValueError):
                 try:
                     data.__dict__["__lshift__"](self, data)
                 except AttributeError:
@@ -44,16 +45,16 @@ class _iostream:
             raise IOError("un-writable iostream!")
         return self
 
-    def seekp(self, index: int, dir: ios.seekdir) -> int:
+    def seekp(self, index: int, sdir: ios.seekdir) -> int:
         if self._std_iostream.seekable():
-            if (dir == ios.beg):
+            if sdir == ios.beg:
                 return self._std_iostream.seek(index, __whence=io.SEEK_SET)
-            elif (dir == ios.cur):
+            elif sdir == ios.cur:
                 return self._std_iostream.seek(index, __whence=io.SEEK_CUR)
-            elif (dir == ios.end):
+            elif sdir == ios.end:
                 return self._std_iostream.seek(index, __whence=io.SEEK_END)
             else:
-                raise ValueError(f"Invalid Seekdir {objstr(dir)}!")
+                raise ValueError(f"Invalid Seekdir {objstr(sdir)}!")
         else:
             raise IOError("un-seekable iostream!")
 
@@ -66,7 +67,7 @@ class _iostream:
     def good(self) -> bool:
         return self._std_iostream.closed
 
-    def __rshift__(self, mutable: type) -> "_iostream":
+    def __rshift__(self, mutable: type) -> Self:
         """
         using std.cin >> var
         read var in stdout and put value into var
@@ -85,7 +86,7 @@ class _iostream:
                 str1 = str1.strip(_strips)
 
             try:
-                if (isinstance(mutable, str)):
+                if isinstance(mutable, str):
                     mutable = str1
                 else:
                     mutable = eval(str1)
@@ -108,7 +109,7 @@ class _iostream:
                         continue
                     if next_var:
                         var += token.string
-                if (isinstance(mutable, str)):
+                if isinstance(mutable, str):
                     exec(f'{var}="{mutable}"',
                          call_frame.f_globals, call_frame.f_locals)
                 else:
@@ -131,32 +132,34 @@ class _iostream:
     #     return self._std_iostream
 
 
-class flush:
+class _Flush:
     @staticmethod
-    def __lshift__(stream: "_iostream", other):
+    def __lshift__(stream: "_IOStream", other):
         stream.flush()
 
 
-class endl:
+class _EndL:
     @staticmethod
-    def __lshift__(stream: "_iostream", other):
+    def __lshift__(stream: "_IOStream", other):
         (stream << '\n').flush()
 
 
-cout = _iostream(_internal_io_obj=__stdout__)
-cin = _iostream(_internal_io_obj=__stdin__)
-cerr = _iostream(_internal_io_obj=__stderr__)
+cout = _IOStream(_internal_io_obj=__stdout__)
+cin = _IOStream(_internal_io_obj=__stdin__)
+cerr = _IOStream(_internal_io_obj=__stderr__)
 
-__man__ = None
+flush = _Flush
+EndL = _EndL
+
+__stdns__ = None
+__lib__ = "iostream"
 
 
-class create_all:
-    all = ['cin', 'cout', 'cerr', 'flush', 'endl']
+class CreateAll:
+    all = ['cin', 'cout', 'cerr', 'flush', 'endl', "__lib__", "_IOStream"]
 
     def __getitem__(self, item):
-        if ios not in __man__.libs:
-            __man__.libs.append(ios)
         return self.__class__.all[item]
 
 
-__all__ = create_all()
+__all__ = CreateAll()

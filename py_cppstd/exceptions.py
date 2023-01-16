@@ -6,5 +6,5 @@
 #  @File    : exceptions.py
 #  @CorpTime: 2022/7/26 上午11:16
 
-class NoLibraryError(ModuleNotFoundError):
+class NoSuchLibraryError(ModuleNotFoundError):
     pass

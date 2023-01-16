@@ -7,19 +7,11 @@ Using C++ std lib iostream in py
     pip install py_cppstd
 
 ### Import
-    from py_cppstd import std  
-__then__:  
-`std.load()` 
-[variables are different after uses?](why_load.md)  
-__or__  
-`std = std()`
+    from py_cppstd import _std  
 
-### *iostream* Usage
+### Example
 
-**recommend** to use ***;*** when end line.  
-
-    std.include('iostream') # include <iostream>  
-    # outputs 114514 and '\n' and flush the stream  
-    std.cout << 114514 << std.endl  
+    std.include('iostream')
+    std.cout << 114514 << std.endl # output 114514 <newline>
     num: int  
-    std.cin >> num # input a number to num
+    std.cin >> num # read a int
